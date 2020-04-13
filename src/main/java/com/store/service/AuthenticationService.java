@@ -2,7 +2,7 @@ package com.store.service;
 
 import com.store.exception.DuplicateUserEmailException;
 import com.store.model.entity.User;
-import com.store.model.request.UserSignUpRequest;
+import com.store.model.request.SignUpRequest;
 import com.store.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +22,7 @@ public class AuthenticationService {
     public AuthenticationService() {
     }
 
-    public User signUp(UserSignUpRequest request) throws DuplicateUserEmailException {
+    public User signUp(SignUpRequest request) throws DuplicateUserEmailException {
 
         Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
         if(existingUser.isPresent()){
@@ -32,7 +32,7 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
-    private User transform(UserSignUpRequest request) {
+    private User transform(SignUpRequest request) {
         User user = request.transform();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return user;

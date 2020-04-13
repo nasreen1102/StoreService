@@ -7,7 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-public class UserSignUpRequest {
+public class SignUpRequest {
 
     @Email(message = "Invalid email")
     private String email;
